@@ -1,0 +1,2 @@
+add_executable(binary_protocl_server binary_protocl_server.c)
+
