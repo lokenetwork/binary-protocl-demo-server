@@ -119,25 +119,19 @@ int main() {
             } else {
                 /* (7) */
                 if (ev_ret[i].events & EPOLLIN) {
-                    //读取4个字节的包标示
-                    int package_type;
-                    //这个服务器有3种包
-                    ci->n = read(ci->fd, &package_type, 4);
-                    printf("server receive package_type is %d\n",package_type);
 
-                    if( package_type == 1){
-                        char name[100];
-                        ci->n = read(ci->fd, name, 100);
-                        printf("server receive name is %s\n",name);
+                    bool is_handsome;
+                    ci->n = read(ci->fd, &is_handsome, 1);
+                    printf("server receive is_handsome is %d \n", is_handsome);
 
-                        int age;
-                        ci->n = read(ci->fd, &age, 4);
-                        printf("server receive age is %d\n",age);
 
-                        bool is_handsome ;
-                        ci->n = read(ci->fd, &is_handsome, 1);
-                        printf("server receive is_handsome is %d \n",is_handsome);
-                    }
+                    char name[100];
+                    ci->n = read(ci->fd, name, 100);
+                    printf("server receive name is %s\n", name);
+
+                    int age;
+                    ci->n = read(ci->fd, &age, 4);
+                    printf("server receive age is %d\n", age);
 
 
                     sleep(100);
